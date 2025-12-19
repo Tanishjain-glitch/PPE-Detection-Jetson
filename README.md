@@ -1,9 +1,6 @@
 # 🦺 Real-Time PPE Detection on NVIDIA Jetson Orin Nano
 
 ---
-## Demo Video
-
-https://github.com/Tanishjain-glitch/PPE-Detection-Jetson/assets/ppe_sample.mp4
 
 ## Overview
 
@@ -16,6 +13,11 @@ To achieve **ultra-low latency** and **high FPS**, standard Python-based post-pr
 This repository is intended for **DIY implementation**, **learning**, and **production-grade experimentation** on Jetson devices.
 
 ---
+## Demo
+
+<p align="center">
+  <img src="assets/demo.gif" width="900"/>
+</p>
 
 ## Key Capabilities
 
