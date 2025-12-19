@@ -1,0 +1,22 @@
+# --- Core Computer Vision ---
+numpy==1.23.5
+opencv-python
+
+# --- AI Frameworks ---
+# Note: On Jetson, install torch and torchvision from NVIDIA's official wheels
+# ultralytics is required for YOLOv8 management and export
+ultralytics
+
+# --- TensorRT & ONNX Bridge ---
+onnx
+onnxsim
+onnxruntime-gpu
+
+# --- Hardware & System Bridge ---
+# Helps Python interface with your custom .so files
+ctypes
+pycuda
+
+# --- Utilities ---
+PyYAML
+tqdm

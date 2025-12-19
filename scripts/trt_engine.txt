@@ -1,0 +1,6 @@
+/usr/src/tensorrt/bin/trtexec \
+  --onnx=weights/ppe_yolov8n.onnx \
+  --saveEngine=weights/ppe_yolov8n.engine \
+  --fp16 \
+  --workspace=4096 \
+  --verbose
