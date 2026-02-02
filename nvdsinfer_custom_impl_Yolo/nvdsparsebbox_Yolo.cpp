@@ -36,12 +36,36 @@ static bool NvDsInferParseYoloV8(
     }
     std::cerr << std::endl;
 
+    const int expected_dimensions = 4 + NUM_CLASSES_YOLO;
+
     if (layer.inferDims.numDims == 2) {
-        dimensions = layer.inferDims.d[0];  // e.g., 10 if channels are [cx,cy,w,h,6class scores]
-        num_boxes = layer.inferDims.d[1];   // 8400
+        int dim0 = layer.inferDims.d[0];
+        int dim1 = layer.inferDims.d[1];
+
+        if (dim0 == expected_dimensions) {
+            dimensions = dim0;
+            num_boxes = dim1;
+        } else if (dim1 == expected_dimensions) {
+            dimensions = dim1;
+            num_boxes = dim0;
+        } else {
+            std::cerr << "ERROR: Unexpected 2D output shape for YOLOv8\n";
+            return false;
+        }
     } else if (layer.inferDims.numDims == 3) {
-        dimensions = layer.inferDims.d[1];
-        num_boxes = layer.inferDims.d[2];
+        int dim1 = layer.inferDims.d[1];
+        int dim2 = layer.inferDims.d[2];
+
+        if (dim1 == expected_dimensions) {
+            dimensions = dim1;
+            num_boxes = dim2;
+        } else if (dim2 == expected_dimensions) {
+            dimensions = dim2;
+            num_boxes = dim1;
+        } else {
+            std::cerr << "ERROR: Unexpected 3D output shape for YOLOv8\n";
+            return false;
+        }
     } else {
         std::cerr << "ERROR: Unexpected output shape\n";
         return false;
@@ -142,4 +166,3 @@ extern "C" bool NvDsInferParseCustomYoloV8(
 }
 
 CHECK_CUSTOM_PARSE_FUNC_PROTOTYPE(NvDsInferParseCustomYoloV8);
-
